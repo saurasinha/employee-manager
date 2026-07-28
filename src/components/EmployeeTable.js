@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import AddEmployee from "../pages/AddEmployee";
+import dummyEmployees from "../data/employees.json";
 
 export default function EmployeeTable({ employees, delEmployee, setEmployees}) {
-  const navigate = useNavigate(); // useNavigate should be called inside the component
+  const navigate = useNavigate();
+  const displayEmployees = employees && employees.length > 0 ? employees : dummyEmployees;
 
   const handleEdit = (id) => {
     navigate(`/edit/${id}`);
@@ -23,7 +25,7 @@ export default function EmployeeTable({ employees, delEmployee, setEmployees}) {
           &nbsp; Add Employee
         </i>
       </div>
-      <table class="table table-striped-columns">
+      <table className="table table-striped-columns">
         <thead className="table-light">
           <tr>
             <th scope="col">#</th>
@@ -35,14 +37,14 @@ export default function EmployeeTable({ employees, delEmployee, setEmployees}) {
           </tr>
         </thead>
         <tbody>
-          {employees.length === 0 ? (
+          {displayEmployees.length === 0 ? (
             <tr>
               <td colSpan="5" className="text-center">
                 No Employees Found
               </td>
             </tr>
           ) : (
-            employees.map((emp, index) => (
+            displayEmployees.map((emp, index) => (
               <tr key={emp.id}>
                 <td>{index + 1}</td>
                 <td>{emp.name}</td>
