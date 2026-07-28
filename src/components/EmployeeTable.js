@@ -25,7 +25,7 @@ export default function EmployeeTable({ employees, delEmployee, setEmployees}) {
           &nbsp; Add Employee
         </i>
       </div>
-      <table className="table table-striped-columns">
+      <table className="table table-striped-columns" border="2px">
         <thead className="table-light">
           <tr>
             <th scope="col">#</th>
